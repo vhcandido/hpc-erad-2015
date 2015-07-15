@@ -2,11 +2,10 @@
 ##ERAD 2015 Challenge - Parallelizing Gaussian elimination
 
 ###About
-This is a solution for the problem proposed in
-http://www.dcce.ibilce.unesp.br/erad/desafio.html
-(See description for details about input format and whatnots)
+This is a solution for the challenge proposed in [ERAD 2015].
+Check this PDF for the detailed description of the problem.
 
-It was proposed by
+It was developed by
 *Brunno Navarro
 *Mario Camara Neto
 *Victor Hugo Cândido
@@ -32,3 +31,7 @@ Run your main binary with
 ```
 
 Then compare the output in stdout with data/resultado.dat
+
+
+[erad 2015]:http://www.dcce.ibilce.unesp.br/erad/desafio.html
+[pdf]:http://www.dcce.ibilce.unesp.br/erad/problema.pdf
