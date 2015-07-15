@@ -6,9 +6,9 @@ This is a solution for the challenge proposed in [ERAD 2015].
 Check this PDF for the detailed description of the problem.
 
 It was developed by
-*Brunno Navarro
-*Mario Camara Neto
-*Victor Hugo Cândido
+-Brunno Navarro
+-Mario Camara Neto
+-Victor Hugo Cândido
 and written in C using the OpenMP API
 
 ###Executing
@@ -22,8 +22,8 @@ The program accepts input from stdin (in the format described above)
 OR
 Inside data directory there is a generator of random systems. Compile it and
 pass the matrix size as a parameter to the binary so it can generate
-*arquivo.dat - formated input file
-*resultado.dat - correct generated system's result
+-arquivo.dat - formated input file
+-resultado.dat - correct generated system's result
 
 Run your main binary with
 ```sh
