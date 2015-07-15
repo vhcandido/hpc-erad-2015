@@ -1,0 +1,6 @@
+# some data generated
+*.dat
+
+# binary files
+data/gen
+A
