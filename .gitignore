@@ -4,3 +4,6 @@
 # binary files
 data/gen
 A
+
+# scripts
+make.sh
