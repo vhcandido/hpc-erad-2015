@@ -3,11 +3,14 @@
 #include <time.h>
 #define SIZE 10
 
-int main(){
-
-	const int num = SIZE;
+int main(int argc, char **argv){
+	int size = SIZE;
+	if(argc>1) {
+		size = atoi(argv[1]);
+	}
+	const int num = size;
 	int i, j;
-	static int x[SIZE], A[SIZE][SIZE];
+	int x[size], A[size][size];
 	srand(time(NULL));
 
 	FILE *Afile, *result;
