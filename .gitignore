@@ -6,4 +6,7 @@ data/gen
 A
 
 # scripts
-make.sh
+*.sh
+
+# files being edited
+*.swp
