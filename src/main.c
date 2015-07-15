@@ -14,7 +14,7 @@ int main() {
 
 	//reads A matrix
 	for(i=0; i<n; ++i) {
-		for(j=0; j<n; ++j) {
+		for(j=n-1; j>=0; --j) {
 			scanf("%lf", &A[i][j]);
 		}
 	}
