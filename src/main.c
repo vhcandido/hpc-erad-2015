@@ -35,11 +35,28 @@ int main() {
         */
 	// FORWARD ELIMINATION ================================================
 	for(k=0; k<n-1; ++k) {
+		if(A[k][k]==0){
+			// swap lines
+			for(i=k; i<n; ++i) {
+				if(A[i][k] != 0) break;
+			}
+			
+			#pragma omp parallel
+			{
+				#pragma omp for schedule(guided)
+				for(j=k; j<=n; ++j) {
+					double aux = A[i][j];
+					A[i][j] = A[k][j];
+					A[k][j] = aux;
+				}
+			}
+		}
 		#pragma omp parallel private(j)
 		{
 			#pragma omp for schedule(guided)
 				for(i=k+1; i<n; ++i) {
 					double m = A[i][k]/A[k][k];
+					if (m==0) continue;
 					for(j=k+1; j<=n; ++j) {
 						A[i][j] -= m * A[k][j];
 					}
