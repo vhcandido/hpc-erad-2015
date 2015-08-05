@@ -10,8 +10,10 @@ int main(int argc, char **argv){
 	}
 	const int num = size;
 	int i, j;
-	int x[size], A[size][size];
+	int x[size], **A;
 	srand(time(NULL));
+
+        A = (int **)malloc(sizeof(int *) * num);
 
 	FILE *Afile, *result;
 	Afile = fopen("arquivo.dat", "w");
@@ -36,6 +38,7 @@ int main(int argc, char **argv){
 
 	for(i=0; i<num; i++)
 	{
+		A[i] = (int *)malloc(sizeof(int) * num);
 		for(j=0; j<num; j++){
 			A[i][j]=rand()%1000;
 			fprintf(Afile, "%d ", A[i][j]);

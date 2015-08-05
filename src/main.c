@@ -2,18 +2,19 @@
 #include <stdlib.h>
 #include <omp.h>
 
-#define SIZE 10000
-double A[SIZE][SIZE+1];
-
 int main() {
 	int n, k, i, j;
+	double **A;
 
         // READING DATA =======================================================
 	// reads n
 	scanf("%d", &n);
 
+	A = (double **)malloc(sizeof(double*) * n);
+
 	//reads A matrix
 	for(i=0; i<n; ++i) {
+		A[i] = (double *)malloc(sizeof(double) * (n+1));
 		for(j=n-1; j>=0; --j) {
 			scanf("%lf", &A[i][j]);
 		}
@@ -23,7 +24,15 @@ int main() {
 		scanf("%lf", &A[i][n]);
 	}
 	//=====================================================================
-
+        /*
+	for(i=0; i<n; ++i) {
+		for(j=0; j<=n; ++j) {
+			printf("%.5lf ", A[i][j]);
+		}
+		printf("\n");
+	}
+	puts("");
+        */
 	// FORWARD ELIMINATION ================================================
 	for(k=0; k<n-1; ++k) {
 		#pragma omp parallel private(j)
@@ -44,7 +53,7 @@ int main() {
 		#pragma omp parallel private(j)
 		{
 			#pragma omp for schedule(guided)
-			for(j=i+1; j<=n; ++j) {
+			for(j=i+1; j<n; ++j) {
 				double aux = A[i][j] * A[j][n];
 				#pragma omp atomic
 				A[i][n] -= aux;
