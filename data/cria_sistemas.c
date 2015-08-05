@@ -2,11 +2,14 @@
 #include <stdlib.h>
 #include <time.h>
 #define SIZE 10
+#define RANGE 10
 
 int main(int argc, char **argv){
 	int size = SIZE;
-	if(argc>1) {
+	int range = RANGE;
+	if(argc>2) {
 		size = atoi(argv[1]);
+		range = atoi(argv[2]);
 	}
 	const int num = size;
 	int i, j;
@@ -32,7 +35,7 @@ int main(int argc, char **argv){
 
 	for(i=0; i<num; i++)
 	{
-		x[i]=rand()%1000;
+		x[i]=rand()%range;
 		fprintf(result, "%d\n", x[i]);
 	}
 
@@ -40,7 +43,7 @@ int main(int argc, char **argv){
 	{
 		A[i] = (int *)malloc(sizeof(int) * num);
 		for(j=0; j<num; j++){
-			A[i][j]=rand()%1000;
+			A[i][j]=rand()%range;
 			fprintf(Afile, "%d ", A[i][j]);
 		}
 		fprintf(Afile,"\n");
