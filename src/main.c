@@ -41,43 +41,34 @@ int main() {
 				if(A[i][k] != 0) break;
 			}
 			
-			#pragma omp parallel
-			{
-				#pragma omp for schedule(guided)
+			#pragma omp parallel for schedule(guided)
 				for(j=k; j<=n; ++j) {
 					double aux = A[i][j];
 					A[i][j] = A[k][j];
 					A[k][j] = aux;
 				}
-			}
 		}
-		#pragma omp parallel private(j)
-		{
-			#pragma omp for schedule(guided)
-				for(i=k+1; i<n; ++i) {
-					double m = A[i][k]/A[k][k];
-					if (m==0) continue;
-					for(j=k+1; j<=n; ++j) {
-						A[i][j] -= m * A[k][j];
-					}
+		#pragma omp parallel for schedule(guided) private(j)
+			for(i=k+1; i<n; ++i) {
+				double m = A[i][k]/A[k][k];
+				if (m==0) continue;
+				for(j=k+1; j<=n; ++j) {
+					A[i][j] -= m * A[k][j];
 				}
-		}
+			}
 	}
 	//=====================================================================
 
 	//BACKWARD SUBSTITUTION ===============================================
 	for(i=n-1; i>=0; --i) {
-		#pragma omp parallel private(j)
-		{
-			#pragma omp for schedule(guided)
+		#pragma omp parallel for schedule(guided) private(j)
 			for(j=i+1; j<n; ++j) {
 				double aux = A[i][j] * A[j][n];
 				#pragma omp atomic
 				A[i][n] -= aux;
 			}
-		}
 		A[i][n] /= A[i][i];
-		printf("%.5lf ", A[i][n]);
+		printf("%.5lf ", (A[i][n] + (A[i][n]>0 ? -0.0000045:0.0000045) ) );
 	}
 	//=====================================================================
 
