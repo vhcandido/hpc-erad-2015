@@ -4,9 +4,18 @@
 # binary files
 data/gen
 A
+B
 
 # scripts
 *.sh
 
 # files being edited
 *.swp
+
+# data files
+*.out
+
+# extra
+src/no_parallel.c
+t
+teste.c
